@@ -4,7 +4,7 @@ declare(strict_types=1);
  * Plugin Name:       RotaPress
  * Plugin URI:        https://github.com/Fluidetom/RotaPress
  * Description:       Editorial rota calendar with role-based access, recurring events, email reminders and personal iCal feed.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Requires at least: 6.3
  * Requires PHP:      8.0
  * Author:            Thomas Mallié
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ROTAPRESS_VERSION', '1.1.0' );
+define( 'ROTAPRESS_VERSION', '1.2.0' );
 define( 'ROTAPRESS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ROTAPRESS_URL', plugin_dir_url( __FILE__ ) );
 

@@ -78,7 +78,7 @@ class RotaPress_Admin {
 				'months'             => __( 'month(s)', 'rotapress' ),
 				'on_days'            => __( 'On days', 'rotapress' ),
 				'until'              => __( 'Until', 'rotapress' ),
-				'this_event'         => __( 'This event only', 'rotapress' ),
+				'this_event'         => __( 'Selected event(s) only', 'rotapress' ),
 				'this_and_following' => __( 'This and following events', 'rotapress' ),
 				'all_events'         => __( 'All events in series', 'rotapress' ),
 				'edit_recurring'     => __( 'Edit recurring event', 'rotapress' ),
@@ -137,8 +137,9 @@ class RotaPress_Admin {
 				'sent_ok_n'  => __( '%d test email(s) sent successfully.', 'rotapress' ),
 				'no_events'  => __( 'No upcoming published events with an assigned participant were found.', 'rotapress' ),
 				'sent_fail'  => __( 'Failed to send. Check your SMTP settings.', 'rotapress' ),
-				/* translators: %d: number of upcoming events */
-				'remove_has_events'     => __( 'This participant has %d upcoming event(s).', 'rotapress' ),
+				'remove_modal_title'    => __( 'Upcoming events affected', 'rotapress' ),
+				/* translators: 1: participant display name, 2: number of upcoming events */
+				'remove_has_events'     => __( 'You are removing %1$s from the rota participants, but this person has %2$d upcoming event(s). What do you want to do?', 'rotapress' ),
 				'remove_reassign_label' => __( 'Reassign to:', 'rotapress' ),
 				'remove_reassign_btn'   => __( 'Reassign', 'rotapress' ),
 				/* translators: %s: participant display name */
@@ -268,7 +269,7 @@ class RotaPress_Admin {
 					<h2 id="rp-scope-title"></h2>
 					<p id="rp-scope-description" class="description"></p>
 					<div class="rp-scope-option">
-						<label><input type="radio" name="rp-scope" value="this" checked> <?php esc_html_e( 'This event only', 'rotapress' ); ?></label>
+						<label><input type="radio" name="rp-scope" value="this" checked> <?php esc_html_e( 'Selected event(s) only', 'rotapress' ); ?></label>
 						<span class="rp-scope-hint"><?php esc_html_e( 'This event will become a standalone, non-recurring event.', 'rotapress' ); ?></span>
 					</div>
 					<div class="rp-scope-option">

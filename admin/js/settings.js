@@ -52,8 +52,8 @@
 						removed.push({ uid: m[1], name: getParticipantName(m[1]) });
 					}
 				});
-				if (!removed.length) { settingsForm.submit(); return; }
-				processNext(removed, 0, function () { settingsForm.submit(); });
+				if (!removed.length) { HTMLFormElement.prototype.submit.call(settingsForm); return; }
+				processNext(removed, 0, function () { HTMLFormElement.prototype.submit.call(settingsForm); });
 			});
 		}
 
@@ -98,7 +98,7 @@
 				overlay.innerHTML =
 					'<div class="rp-settings-modal-box">' +
 						'<h2 id="rp-remove-modal-title"></h2>' +
-						'<p id="rp-remove-modal-name"></p>' +
+						'<p id="rp-remove-modal-context"></p>' +
 						'<p id="rp-remove-modal-series" class="description" style="display:none"></p>' +
 						'<p><label id="rp-remove-reassign-label"></label><br>' +
 						'<select id="rp-remove-select" style="width:100%;max-width:300px"></select></p>' +
@@ -116,14 +116,14 @@
 
 			var overlay      = document.getElementById('rp-remove-modal');
 			var titleEl      = document.getElementById('rp-remove-modal-title');
-			var nameEl       = document.getElementById('rp-remove-modal-name');
+			var contextEl    = document.getElementById('rp-remove-modal-context');
 			var seriesEl     = document.getElementById('rp-remove-modal-series');
 			var reassignLbl  = document.getElementById('rp-remove-reassign-label');
 			var selectEl     = document.getElementById('rp-remove-select');
 			var statusEl     = document.getElementById('rp-remove-status');
 
-			titleEl.textContent    = i18n.remove_has_events.replace('%d', data.count);
-			nameEl.textContent     = user.name;
+			titleEl.textContent   = i18n.remove_modal_title;
+			contextEl.textContent = i18n.remove_has_events.replace('%1$s', user.name).replace('%2$d', data.count);
 			reassignLbl.textContent = i18n.remove_reassign_label;
 			statusEl.textContent   = '';
 
@@ -165,8 +165,11 @@
 			clearBtn.textContent    = i18n.remove_clear_btn;
 			keepBtn.textContent     = i18n.remove_keep_btn;
 
-			/* Disable reassign if no options available. */
+			/* Reset disabled state (cloneNode copies it from previous modal). */
 			reassignBtn.disabled = (selectEl.options.length === 0);
+			deleteBtn.disabled   = false;
+			clearBtn.disabled    = false;
+			keepBtn.disabled     = false;
 
 			function closeModal() {
 				overlay.style.display = 'none';
