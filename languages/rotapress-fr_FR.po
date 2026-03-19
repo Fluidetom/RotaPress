@@ -778,6 +778,54 @@ msgstr ""
 msgid "Reminder cancelled"
 msgstr "Notifications de rappel annulée"
 
+#. translators: %d: number of upcoming events
+#: admin/class-rotapress-admin.php
+#, php-format
+msgid "This participant has %d upcoming event(s)."
+msgstr "Ce participant a %d événement(s) à venir."
+
+#: admin/class-rotapress-admin.php
+msgid "Reassign to:"
+msgstr "Réassigner à :"
+
+#: admin/class-rotapress-admin.php
+msgid "Reassign"
+msgstr "Réassigner"
+
+#. translators: %s: participant display name
+#: admin/class-rotapress-admin.php
+#, php-format
+msgid "Delete all future events for %s"
+msgstr "Supprimer tous les événements à venir pour %s"
+
+#. translators: %s: participant display name
+#: admin/class-rotapress-admin.php
+#, php-format
+msgid "Are you sure? This will move all future events for %s to trash."
+msgstr "Êtes-vous sûr(e) ? Tous les événements à venir pour %s seront déplacés dans la corbeille."
+
+#: admin/class-rotapress-admin.php
+msgid "Clear assignee for all future events"
+msgstr "Retirer le participant de tous les événements à venir"
+
+#. translators: %s: participant display name
+#: admin/class-rotapress-admin.php
+#, php-format
+msgid "Are you sure? This will remove the assignee from all future events for %s."
+msgstr "Êtes-vous sûr(e) ? Le participant sera retiré de tous les événements à venir pour %s."
+
+#: admin/class-rotapress-admin.php
+msgid "Keep events as-is"
+msgstr "Conserver les événements tels quels"
+
+#: admin/class-rotapress-admin.php
+msgid "Note: recurring series will be fully affected (all occurrences)."
+msgstr "Note : les séries récurrentes seront entièrement affectées (toutes les occurrences)."
+
+#: admin/class-rotapress-admin.php
+msgid "Processing…"
+msgstr "Traitement en cours…"
+
 #~ msgid "Send a test email using the template above with sample data."
 #~ msgstr ""
 #~ "Envoyer un e-mail de test en utilisant le modèle ci-dessus avec des "

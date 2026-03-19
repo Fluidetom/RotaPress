@@ -84,6 +84,15 @@ class RotaPress_Calendar {
 			'permission_callback' => function (): bool { return current_user_can( 'rotapress_read' ); },
 		) );
 
+		register_rest_route( 'rotapress/v1', '/users/(?P<id>\d+)/future-events', array(
+			'methods'             => \WP_REST_Server::READABLE,
+			'callback'            => array( $this, 'get_user_future_events' ),
+			'permission_callback' => function (): bool { return current_user_can( 'rotapress_admin' ); },
+			'args' => array(
+				'id' => array( 'required' => true, 'sanitize_callback' => 'absint' ),
+			),
+		) );
+
 		register_rest_route( 'rotapress/v1', '/test-email', array(
 			'methods'             => \WP_REST_Server::CREATABLE,
 			'callback'            => array( $this, 'send_test_email' ),
@@ -615,6 +624,61 @@ class RotaPress_Calendar {
 			),
 			200
 		);
+	}
+
+	/* ── GET /users/{id}/future-events ───────────────────────────── */
+
+	public function get_user_future_events( \WP_REST_Request $request ): \WP_REST_Response {
+		$user_id = (int) $request->get_param( 'id' );
+		$today   = gmdate( 'Y-m-d' );
+		$results = array();
+
+		// Part 1: non-recurring events with future dates
+		$posts = get_posts( array(
+			'post_type'      => 'rp_event',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'meta_query'     => array(
+				array( 'key' => '_rp_assigned_user', 'value' => $user_id, 'compare' => '=', 'type' => 'NUMERIC' ),
+				array( 'key' => '_rp_event_date', 'value' => $today, 'compare' => '>=', 'type' => 'DATE' ),
+				array( 'key' => '_rp_rrule', 'compare' => 'NOT EXISTS' ),
+			),
+		) );
+		foreach ( $posts as $p ) {
+			$results[] = array(
+				'id'           => $p->ID,
+				'title'        => $p->post_title,
+				'event_date'   => (string) get_post_meta( $p->ID, '_rp_event_date', true ),
+				'is_recurring' => false,
+			);
+		}
+
+		// Part 2: recurring parents with future occurrences
+		$parents = get_posts( array(
+			'post_type'      => 'rp_event',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'meta_query'     => array(
+				array( 'key' => '_rp_assigned_user', 'value' => $user_id, 'compare' => '=', 'type' => 'NUMERIC' ),
+				array( 'key' => '_rp_rrule', 'compare' => 'EXISTS' ),
+				array( 'key' => '_rp_rrule', 'value' => '', 'compare' => '!=' ),
+			),
+		) );
+		foreach ( $parents as $p ) {
+			$rrule = json_decode( (string) get_post_meta( $p->ID, '_rp_rrule', true ), true );
+			if ( ! is_array( $rrule ) ) { continue; }
+			$until = $rrule['until'] ?? '';
+			if ( '' === $until || $until >= $today ) {
+				$results[] = array(
+					'id'           => $p->ID,
+					'title'        => $p->post_title,
+					'event_date'   => (string) get_post_meta( $p->ID, '_rp_event_date', true ),
+					'is_recurring' => true,
+				);
+			}
+		}
+
+		return new \WP_REST_Response( array( 'count' => count( $results ), 'events' => $results ), 200 );
 	}
 
 	/* ── GET /users ───────────────────────────────────────────────── */

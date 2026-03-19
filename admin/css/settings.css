@@ -95,3 +95,28 @@
 .rp-trash-pagination a:hover {
 	background: #f0f0f1;
 }
+
+/* ── Participant removal modal ── */
+.rp-settings-modal-overlay {
+	position: fixed; inset: 0;
+	background: rgba(0,0,0,.55);
+	display: flex; align-items: center; justify-content: center;
+	z-index: 100000;
+}
+
+.rp-settings-modal-box {
+	background: #fff; border-radius: 8px; padding: 24px;
+	width: 520px; max-width: 95vw; max-height: 90vh; overflow-y: auto;
+	box-shadow: 0 4px 24px rgba(0,0,0,.2);
+}
+
+.rp-settings-modal-box h2 { margin-top: 0; }
+
+.rp-remove-modal-buttons {
+	display: flex; flex-wrap: wrap; gap: 8px;
+	margin-top: 16px; padding-top: 12px; border-top: 1px solid #dcdcde;
+}
+
+/* rp-btn-delete is defined in calendar.css which is not loaded here */
+.rp-settings-modal-box .rp-btn-delete { color: #d63638 !important; border-color: #d63638 !important; }
+.rp-settings-modal-box .rp-btn-delete:hover { background: #d63638 !important; color: #fff !important; }

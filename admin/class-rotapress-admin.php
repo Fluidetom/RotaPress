@@ -127,17 +127,44 @@ class RotaPress_Admin {
 		wp_enqueue_style( 'rotapress-settings', ROTAPRESS_URL . 'admin/css/settings.css', array(), ROTAPRESS_VERSION );
 		wp_enqueue_script( 'rotapress-settings', ROTAPRESS_URL . 'admin/js/settings.js', array(), ROTAPRESS_VERSION, true );
 		wp_localize_script( 'rotapress-settings', 'rotapress_settings', array(
-			'api_base' => esc_url_raw( rest_url( 'rotapress/v1' ) ),
-			'nonce'    => wp_create_nonce( 'wp_rest' ),
-			'i18n'     => array(
+			'api_base'     => esc_url_raw( rest_url( 'rotapress/v1' ) ),
+			'nonce'        => wp_create_nonce( 'wp_rest' ),
+			'participants' => $this->get_participants_for_js(),
+			'i18n'         => array(
 				'sending'    => __( 'Sending…', 'rotapress' ),
 				'sent_ok'    => __( 'Test email sent successfully.', 'rotapress' ),
 				/* translators: %d: number of test emails sent */
 				'sent_ok_n'  => __( '%d test email(s) sent successfully.', 'rotapress' ),
 				'no_events'  => __( 'No upcoming published events with an assigned participant were found.', 'rotapress' ),
 				'sent_fail'  => __( 'Failed to send. Check your SMTP settings.', 'rotapress' ),
+				/* translators: %d: number of upcoming events */
+				'remove_has_events'     => __( 'This participant has %d upcoming event(s).', 'rotapress' ),
+				'remove_reassign_label' => __( 'Reassign to:', 'rotapress' ),
+				'remove_reassign_btn'   => __( 'Reassign', 'rotapress' ),
+				/* translators: %s: participant display name */
+				'remove_delete_btn'     => __( 'Delete all future events for %s', 'rotapress' ),
+				/* translators: %s: participant display name */
+				'remove_delete_confirm' => __( 'Are you sure? This will move all future events for %s to trash.', 'rotapress' ),
+				'remove_clear_btn'      => __( 'Clear assignee for all future events', 'rotapress' ),
+				/* translators: %s: participant display name */
+				'remove_clear_confirm'  => __( 'Are you sure? This will remove the assignee from all future events for %s.', 'rotapress' ),
+				'remove_keep_btn'       => __( 'Keep events as-is', 'rotapress' ),
+				'remove_series_note'    => __( 'Note: recurring series will be fully affected (all occurrences).', 'rotapress' ),
+				'remove_processing'     => __( 'Processing…', 'rotapress' ),
 			),
 		) );
+	}
+
+	private function get_participants_for_js(): array {
+		$participants = get_option( 'rotapress_participants', array() );
+		if ( ! is_array( $participants ) ) { return array(); }
+		$result = array();
+		foreach ( array_keys( array_filter( $participants ) ) as $uid ) {
+			$uid  = (int) $uid;
+			$user = get_userdata( $uid );
+			if ( $user ) { $result[] = array( 'id' => $uid, 'name' => $user->display_name ); }
+		}
+		return $result;
 	}
 
 	/* ── Calendar page ─────────────────────────────────────────────── */
