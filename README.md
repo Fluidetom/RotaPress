@@ -17,21 +17,23 @@ With RotaPress, an editor or team lead can:
 - Subscribe via iCal — each author gets a personal, secure feed URL to sync their assigned events with any standard calendar app.
 - Control access with role-based permissions. Decide which WordPress roles can view the calendar, edit events, or manage settings, without modifying WordPress core roles.
 - Recover from mistakes — deleted events go to a 30-day trash with full restore capability.
+<br><br>
 
 RotaPress is not a publishing workflow tool like PublishPress for example, it doesn't control article drafts or post statuses. It's purely a scheduling layer: a shared rota that answers the simple question "who is writing what this week?" and makes sure everyone knows it.
 
+<br><br>
 ## Requirements
 
 - WordPress 6.3 or later
 - PHP 8.0 or later
 
+<br><br>
 ## Installation
 
 1. Download latest release or clone this repository into `wp-content/plugins/rotapress/`.
 2. Activate **RotaPress** from the WordPress Plugins admin page.
 3. Navigate to **RotaPress → Settings** to configure role mapping and participants.
-
-
+<br><br>
 ## Role Mapping
 
 RotaPress defines three permission levels:
@@ -41,7 +43,7 @@ RotaPress defines three permission levels:
 | **Admin** | `rotapress_admin` | Full access including settings |
 | **Edit** | `rotapress_edit` | Create, edit, delete events |
 | **Read** | `rotapress_read` | View the calendar only |
-
+<br>
 Capabilities are granted dynamically — no WordPress roles are modified in the database. By default:
 
 - **Administrator** → Admin
@@ -55,7 +57,7 @@ You can customise the mapping in **RotaPress → Settings → Role Mapping** by 
 ![Screenshot setting - Role mapping and participants](assets/rotapress-settings-participants.png)
 *Screenshot setting - Role mapping and participants*
 
-
+<br><br>
 ## Calendar Usage
 
 - Click any date to create a new event (requires Edit permission).
@@ -94,31 +96,28 @@ When editing or deleting a recurring event, you can choose to apply the change t
 - All events in the series (allows editing the recurrence rule itself)
 
 ![Screenshot Rota - Editing a new recurring event](assets/rotapress-calendar-edit_recurring.png)
-
 *Screenshot Rota - Editing a new recurring event*
-
-
+<br><br>
 ## Email Reminders
 
 RotaPress sends email reminders to assigned users before their scheduled events. Configure the reminder offsets in **Settings → Reminder Notifications** (default: 7, 3, 1 days before).
 
 Emails are sent via `wp_mail()` and are compatible with any SMTP plugin.
-
+<br><br>
 ### Email Template
 
 Customise the subject and body in **Settings → Reminder email template**. The following placeholders are available: `{title}`, `{assignee}`, `{date}`, `{notes}`, `{days}`, `{site}`, `{calendar_url}`, `{no_reminder_url}`.
 
 Use the **Test Email** tool in the same section to send a preview to any address without waiting for the daily cron run.
-
+<br><br>
 ### Opt-out
 
 Each reminder email includes a `{no_reminder_url}` link. Clicking it disables reminders for that specific event only, without affecting other events or requiring the user to log in.
 
-![Screenshot setting - Email reminder parameters](assets/rotapress-settings-reminder.png)
+![Screenshot setting - Email reminder parameters](assets/rotapress-settings-reminder.png)<br>
 *Screenshot setting - Email reminder parameters + test email function*
 
-
-
+<br><br>
 ### Cron Configuration
 
 WordPress cron depends on site traffic. For reliable reminder delivery, set up a real server cron job:
@@ -135,7 +134,7 @@ Or, using WP-CLI:
 
 Note : it's recommended to add `define('DISABLE_WP_CRON', true);` to `wp-config.php` when using a server cron.
 
-
+<br><br>
 ## iCal Feed
 
 Each user gets a personal iCal feed URL containing only their assigned events. Find it by clicking the RSS icon in the calendar toolbar.
@@ -146,12 +145,12 @@ Each user gets a personal iCal feed URL containing only their assigned events. F
 
 Note: for security reason, a person with the `rotapress_admin` role can revoke any active iCal feed on behalf of a user.
 
-
+<br><br>
 ## Data Retention
 
 By default, all RotaPress data (events, settings, tokens) is removed when you delete the plugin. To preserve data across reinstalls, enable **Keep all RotaPress data when the plugin is deleted** in Settings.
 
-
+<br><br>
 ## Internationalization
 
 RotaPress is fully translatable. A `.pot` file is included in `languages/rotapress.pot`. To translate:
@@ -161,12 +160,12 @@ RotaPress is fully translatable. A `.pot` file is included in `languages/rotapre
 3. Generate the `.mo` file.
 4. Place both files in the `languages/` directory.
 
-
+<br><br>
 ## License
 
 GPL v2 or later. See [LICENSE](https://www.gnu.org/licenses/gpl-2.0.html).
 
-
+<br><br>
 ## Author
 
 Thomas Mallié — [GitHub](https://github.com/Fluidetom/RotaPress)
