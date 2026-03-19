@@ -117,6 +117,7 @@ Each reminder email includes a `{no_reminder_url}` link. Clicking it disables re
 *Screenshot setting - Email reminder parameters + test email function*
 
 
+
 ### Cron Configuration
 
 WordPress cron depends on site traffic. For reliable reminder delivery, set up a real server cron job:
