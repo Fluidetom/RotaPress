@@ -22,12 +22,14 @@ With RotaPress, an editor or team lead can:
 RotaPress is not a publishing workflow tool like PublishPress for example, it doesn't control article drafts or post statuses. It's purely a scheduling layer: a shared rota that answers the simple question "who is writing what this week?" and makes sure everyone knows it.
 
 <br>
+
 ## Requirements
 
 - WordPress 6.3 or later
 - PHP 8.0 or later
 
 <br>
+
 ## Installation
 
 1. Download latest release or clone this repository into `wp-content/plugins/rotapress/`.
@@ -45,6 +47,7 @@ RotaPress defines three permission levels:
 | **Read** | `rotapress_read` | View the calendar only |
 <br>
 Capabilities are granted dynamically — no WordPress roles are modified in the database.
+
 By default:
 
 - **Administrator** → Admin
@@ -52,13 +55,15 @@ By default:
 - **Author** → Read
 
 
-You can customise the mapping in **RotaPress → Settings → Role Mapping** by checking the WordPress roles that should receive each RotaPress level.<br>
+You can customise the mapping in **RotaPress → Settings → Role Mapping** by checking the WordPress roles that should receive each RotaPress level.
+<br>
 
 
 ![Screenshot setting - Role mapping and participants](assets/rotapress-settings-participants.png)
 *Screenshot setting - Role mapping and participants*
 
-<br><br>
+<br>
+
 ## Calendar Usage
 
 - Click any date to create a new event (requires Edit permission).
@@ -67,16 +72,19 @@ You can customise the mapping in **RotaPress → Settings → Role Mapping** by 
 - Use the **My events only** toggle to filter the calendar.
 - Use the **Today** button in the toolbar to navigate back to the current date in the calendar view.
 - Switch to list view using the **List** button in the toolbar, then use the **Year / Month / Today** buttons to filter events by scope.
+
 <br>
 
 ![Screenshot Rota - Monthly calendar view](assets/rotapress-calendar-view.jpg)
 *Screenshot Rota - Monthly calendar view*
+
 <br>
 
 ![Screenshot Rota - List view](assets/rotapress-list-view.jpg)
 *Screenshot Rota - List view with Year | Month | Today filters*
 
 <br><br>
+
 ## Recurring Events
 
 When creating an event, check **Recurring event** to configure:
@@ -85,8 +93,14 @@ When creating an event, check **Recurring event** to configure:
 - **Interval**: Every N weeks/months
 - **On days** (weekly only): Select specific weekdays
 - **Until**: End date (required — no infinite recurrence)
+
 <br>
-![Screenshot Rota - Creating a new recurring event](assets/rotapress-calendar-new_recurring.png)<br>
+
+![Screenshot Rota - Creating a new recurring event](assets/rotapress-calendar-new_recurring.png)
+<br>
+
+*Screenshot Rota - Creating a new recurring event*
+
 
 
 When editing or deleting a recurring event, you can choose to apply the change to:
@@ -97,19 +111,23 @@ When editing or deleting a recurring event, you can choose to apply the change t
 
 ![Screenshot Rota - Editing a new recurring event](assets/rotapress-calendar-edit_recurring.png)<br>
 *Screenshot Rota - Editing a new recurring event*
+
 <br><br>
+
 ## Email Reminders
 
 RotaPress sends email reminders to assigned users before their scheduled events. Configure the reminder offsets in **Settings → Reminder Notifications** (default: 7, 3, 1 days before).
 
 Emails are sent via `wp_mail()` and are compatible with any SMTP plugin.
 <br><br>
+
 ### Email Template
 
 Customise the subject and body in **Settings → Reminder email template**. The following placeholders are available: `{title}`, `{assignee}`, `{date}`, `{notes}`, `{days}`, `{site}`, `{calendar_url}`, `{no_reminder_url}`.
 
 Use the **Test Email** tool in the same section to send a preview to any address without waiting for the daily cron run.
 <br>
+
 ### Opt-out
 
 Each reminder email includes a `{no_reminder_url}` link. Clicking it disables reminders for that specific event only, without affecting other events or requiring the user to log in.
@@ -118,6 +136,7 @@ Each reminder email includes a `{no_reminder_url}` link. Clicking it disables re
 *Screenshot setting - Email reminder parameters + test email function*
 
 <br>
+
 ### Cron Configuration
 
 WordPress cron depends on site traffic. For reliable reminder delivery, set up a real server cron job:
@@ -135,6 +154,7 @@ Or, using WP-CLI:
 Note : it's recommended to add `define('DISABLE_WP_CRON', true);` to `wp-config.php` when using a server cron.
 
 <br>
+
 ## iCal Feed
 
 Each user gets a personal iCal feed URL containing only their assigned events. Find it by clicking the RSS icon in the calendar toolbar.
@@ -146,11 +166,13 @@ Each user gets a personal iCal feed URL containing only their assigned events. F
 Note: for security reason, a person with the `rotapress_admin` role can revoke any active iCal feed on behalf of a user.
 
 <br>
+
 ## Data Retention
 
 By default, all RotaPress data (events, settings, tokens) is removed when you delete the plugin. To preserve data across reinstalls, enable **Keep all RotaPress data when the plugin is deleted** in Settings.
 
 <br>
+
 ## Internationalization
 
 RotaPress is fully translatable. A `.pot` file is included in `languages/rotapress.pot`. To translate:
@@ -161,11 +183,13 @@ RotaPress is fully translatable. A `.pot` file is included in `languages/rotapre
 4. Place both files in the `languages/` directory.
 
 <br>
+
 ## License
 
 GPL v2 or later. See [LICENSE](https://www.gnu.org/licenses/gpl-2.0.html).
 
 <br>
+
 ## Author
 
 Thomas Mallié — [GitHub](https://github.com/Fluidetom/RotaPress)
