@@ -48,6 +48,8 @@ Capabilities are granted dynamically — no WordPress roles are modified in the 
 
 You can customise the mapping in **RotaPress → Settings → Role Mapping** by checking the WordPress roles that should receive each RotaPress level.
 
+![Screenshot setting - Role mapping and participants](assets/rotapress-settings-participants.png)
+
 ## Calendar Usage
 
 - Click any date to create a new event (requires Edit permission).
@@ -56,6 +58,10 @@ You can customise the mapping in **RotaPress → Settings → Role Mapping** by 
 - Use the **My events only** toggle to filter the calendar.
 - Use the **Today** button in the toolbar to navigate back to the current date in the calendar view.
 - Switch to list view using the **List** button in the toolbar, then use the **Year / Month / Today** buttons to filter events by scope.
+
+![Screenshot Rota - Calendar view](assets/rotapress-calendar-view.jpg)
+
+![Screenshot Rota - List view](assets/rotapress-list-view.jpg)
 
 ## Recurring Events
 
@@ -87,6 +93,8 @@ Use the **Test Email** tool in the same section to send a preview to any address
 ### Opt-out
 
 Each reminder email includes a `{no_reminder_url}` link. Clicking it disables reminders for that specific event only, without affecting other events or requiring the user to log in.
+
+![Screenshot setting - Email reminder parameters](assets/rotapress-settings-reminder.png)
 
 ### Cron Configuration
 
