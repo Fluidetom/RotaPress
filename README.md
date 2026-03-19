@@ -94,6 +94,7 @@ When editing or deleting a recurring event, you can choose to apply the change t
 - All events in the series (allows editing the recurrence rule itself)
 
 ![Screenshot Rota - Editing a new recurring event](assets/rotapress-calendar-edit_recurring.png)
+
 *Screenshot Rota - Editing a new recurring event*
 
 
