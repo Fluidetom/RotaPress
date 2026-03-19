@@ -1,0 +1,740 @@
+# Copyright (C) 2026 Thomas Mallié
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: RotaPress 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/RotaPress\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-03-19T09:10:08+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: rotapress\n"
+
+#. Plugin Name of the plugin
+#: rotapress.php
+#: admin/class-rotapress-admin.php:23
+#: admin/class-rotapress-admin.php:149
+msgid "RotaPress"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: rotapress.php
+msgid "https://github.com/Fluidetom/RotaPress"
+msgstr ""
+
+#. Description of the plugin
+#: rotapress.php
+msgid "Editorial rota calendar with role-based access, recurring events, email reminders and personal iCal feed."
+msgstr ""
+
+#. Author of the plugin
+#: rotapress.php
+msgid "Thomas Mallié"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:28
+#: admin/class-rotapress-admin.php:323
+msgid "RotaPress Settings"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:28
+msgid "Settings"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:59
+#: admin/class-rotapress-admin.php:153
+msgid "New Event"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:60
+msgid "Edit Event"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:61
+#: admin/class-rotapress-admin.php:190
+#: admin/class-rotapress-admin.php:515
+msgid "Title"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:62
+#: admin/class-rotapress-admin.php:192
+msgid "Date"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:63
+#: admin/class-rotapress-admin.php:194
+msgid "Assigned to"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:64
+#: admin/class-rotapress-admin.php:196
+msgid "Notes"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:65
+#: admin/class-rotapress-admin.php:231
+msgid "Save"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:66
+#: admin/class-rotapress-admin.php:232
+msgid "Delete"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:67
+#: admin/class-rotapress-admin.php:233
+#: admin/class-rotapress-admin.php:273
+#: admin/class-rotapress-admin.php:288
+msgid "Close"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:68
+#: admin/class-rotapress-admin.php:178
+#: admin/class-rotapress-admin.php:257
+msgid "Cancel"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:69
+#: admin/class-rotapress-admin.php:256
+msgid "Continue"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:70
+#: admin/class-rotapress-admin.php:201
+msgid "Recurring event"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:71
+#: admin/class-rotapress-admin.php:203
+msgid "Repeat"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:72
+#: admin/class-rotapress-admin.php:205
+msgid "Daily"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:73
+#: admin/class-rotapress-admin.php:206
+msgid "Weekly"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:74
+#: admin/class-rotapress-admin.php:207
+msgid "Monthly"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:75
+#: admin/class-rotapress-admin.php:209
+msgid "Every"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:76
+#: admin/class-rotapress-admin.php:211
+msgid "day(s)"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:77
+msgid "week(s)"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:78
+msgid "month(s)"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:79
+#: admin/class-rotapress-admin.php:213
+msgid "On days"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:80
+#: admin/class-rotapress-admin.php:220
+msgid "Until"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:81
+#: admin/class-rotapress-admin.php:244
+msgid "This event only"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:82
+#: admin/class-rotapress-admin.php:248
+msgid "This and following events"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:83
+#: admin/class-rotapress-admin.php:252
+msgid "All events in series"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:84
+msgid "Edit recurring event"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:85
+msgid "Delete recurring event"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:86
+#: admin/class-rotapress-admin.php:157
+msgid "My events only"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:87
+#: admin/class-rotapress-admin.php:159
+#: admin/class-rotapress-admin.php:265
+msgid "iCal Feed"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:88
+#: admin/class-rotapress-admin.php:282
+msgid "Copy URL"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:89
+msgid "Copied!"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:90
+#: admin/class-rotapress-admin.php:286
+msgid "Regenerate"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:91
+msgid "Regenerate your iCal token? The old URL will stop working."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:92
+#: admin/class-rotapress-admin.php:269
+msgid "You do not have an iCal feed URL yet."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:93
+#: admin/class-rotapress-admin.php:272
+msgid "Generate feed URL"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:94
+#: admin/class-rotapress-admin.php:287
+msgid "Revoke my feed URL"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:95
+msgid "Revoke your feed URL? Calendar apps using it will stop receiving updates."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:96
+#: admin/class-rotapress-admin.php:279
+msgid "This URL contains a secret token — keep it private."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:97
+#: admin/class-rotapress-admin.php:270
+#: admin/class-rotapress-admin.php:284
+msgid "Your feed shows only events assigned to you."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:98
+msgid "Drag & drop is not available for recurring events."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:99
+msgid "— Select —"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:100
+msgid "Nobody available"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:101
+msgid "Calendar"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:102
+msgid "List"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:103
+#: admin/class-rotapress-admin.php:166
+msgid "Year"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:104
+#: admin/class-rotapress-admin.php:175
+msgid "Reassign to…"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:105
+#: admin/class-rotapress-admin.php:176
+msgid "Reassign"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:106
+#: admin/class-rotapress-admin.php:177
+msgid "Delete selected"
+msgstr ""
+
+#. translators: %d: number of events selected in bulk actions
+#: admin/class-rotapress-admin.php:108
+#, php-format
+msgid "%d selected"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:109
+msgid "Delete this event? It will be moved to the trash."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:110
+msgid "Please enter a title for the event."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:111
+msgid "Add event without any participant?"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:112
+msgid "Delete all selected events? They will be moved to the trash and can only be restored by an admin."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:113
+msgid "Selection includes recurring events"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:114
+msgid "Do you want to modify only the selected events (which will become standalone, non-recurring events), or all events in the series of the selected events?"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:115
+#: admin/class-rotapress-admin.php:168
+msgid "Today"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:116
+#: admin/class-rotapress-admin.php:227
+msgid "Disable email reminders for this event"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:117
+msgid "An error occurred. Please try again."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:118
+msgid "MO"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:118
+msgid "TU"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:119
+msgid "WE"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:119
+msgid "TH"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:120
+msgid "FR"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:120
+msgid "SA"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:121
+msgid "SU"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:133
+msgid "Sending…"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:134
+msgid "Test email sent successfully."
+msgstr ""
+
+#. translators: %d: number of test emails sent
+#: admin/class-rotapress-admin.php:136
+#, php-format
+msgid "%d test email(s) sent successfully."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:137
+#: includes/class-rotapress-calendar.php:593
+msgid "No upcoming published events with an assigned participant were found."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:138
+msgid "Failed to send. Check your SMTP settings."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:167
+msgid "Month"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:173
+msgid "All"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:245
+msgid "This event will become a standalone, non-recurring event."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:249
+msgid "A new separate recurring series will be created from this date onward."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:253
+msgid "All occurrences will be updated. You can also change the recurrence rule."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:325
+msgid "Settings saved."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:328
+msgid "Token revoked."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:331
+msgid "Event restored from trash."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:334
+msgid "Event permanently deleted."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:342
+msgid "Role Mapping"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:343
+msgid "Assign one RotaPress permission level per WordPress role."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:346
+msgid "WordPress Role"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:347
+msgid "Admin"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:348
+msgid "Edit"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:349
+msgid "Read"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:350
+msgid "None"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:371
+msgid "Rota Participants"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:372
+msgid "Select which users appear in the calendar and assign their colour."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:387
+msgid "Reminder Notifications"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:388
+msgid "Days before event"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:390
+msgid "Comma-separated list of days, e.g. 7,3,1"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:393
+msgid "Reminder email template"
+msgstr ""
+
+#. translators: %s: list of available placeholder codes
+#: admin/class-rotapress-admin.php:397
+#, php-format
+msgid "Available placeholders: %s"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:401
+msgid "Subject"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:403
+msgid "Body"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:408
+msgid "Test Email"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:409
+msgid "Use this tool to verify your email template and delivery without waiting for the daily reminder. \"Dummy\" mode fills all placeholders with sample data so you can preview the template. \"Real event\" mode fetches actual upcoming published events, sends genuine reminder emails — including working opt-out links — and redirects delivery to your test address instead of the real assignees."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:411
+msgid "Test recipient"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:412
+msgid "recipient@example.com"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:415
+msgid "Mode"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:417
+msgid "Dummy data (template preview)"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:418
+msgid "Next 1 real event"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:419
+msgid "Next 2 real events"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:420
+msgid "Next 3 real events"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:422
+msgid "Send test"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:426
+msgid "RotaPress sends email via wp_mail(). For reliable delivery, install an SMTP plugin such as FluentSMTP, WP Mail SMTP, or Post SMTP."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:429
+msgid "Cron Status"
+msgstr ""
+
+#. translators: %s: date and time of next scheduled cron run
+#: admin/class-rotapress-admin.php:434
+#, php-format
+msgid "Next scheduled reminder run: %s"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:437
+msgid "No cron event scheduled. Deactivate and reactivate the plugin to reschedule."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:439
+msgid "WordPress cron runs on any page visit to your site (front-end or admin). For reliable scheduling, configure a real server cron job that calls wp-cron.php every few minutes."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:442
+msgid "Data Retention"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:443
+msgid "Keep all RotaPress data when the plugin is deleted"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:451
+msgid "Active iCal Feeds"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:452
+msgid "All users with an active iCal feed token. Revoke a token to immediately disable the feed URL."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:454
+msgid "No active feed tokens."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:458
+msgid "User"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:459
+msgid "Email"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:460
+msgid "Created"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:472
+msgid "Revoke this token? The feed URL will stop working immediately."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:473
+msgid "Revoke"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:485
+msgid "Trash"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:486
+msgid "Deleted events are kept in the trash for 30 days. You can restore them here."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:502
+msgid "Trash is empty."
+msgstr ""
+
+#. translators: %d: number of events in trash
+#: admin/class-rotapress-admin.php:508
+#, php-format
+msgid "%d event(s) in trash."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:516
+msgid "Event date"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:517
+msgid "Deleted by"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:518
+msgid "Deleted on"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:524
+#: includes/class-rotapress-ical.php:211
+msgid "Unknown"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:540
+msgid "Restore"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:544
+msgid "Permanently delete this event? This cannot be undone."
+msgstr ""
+
+#: admin/class-rotapress-admin.php:545
+msgid "Delete permanently"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:573
+#: admin/class-rotapress-admin.php:623
+#: admin/class-rotapress-admin.php:642
+#: includes/class-rotapress-ical.php:242
+#: includes/class-rotapress-ical.php:255
+msgid "Unauthorized."
+msgstr ""
+
+#: includes/class-rotapress-calendar.php:211
+msgid "Title and event date are required."
+msgstr ""
+
+#: includes/class-rotapress-calendar.php:253
+#: includes/class-rotapress-calendar.php:283
+#: includes/class-rotapress-calendar.php:391
+#: includes/class-rotapress-calendar.php:412
+#: includes/class-rotapress-reminders.php:269
+msgid "Event not found."
+msgstr ""
+
+#: includes/class-rotapress-calendar.php:435
+msgid "No events selected."
+msgstr ""
+
+#: includes/class-rotapress-calendar.php:509
+msgid "Invalid bulk action."
+msgstr ""
+
+#: includes/class-rotapress-calendar.php:521
+msgid "Invalid email address."
+msgstr ""
+
+#: includes/class-rotapress-calendar.php:530
+msgid "Sample Event Title"
+msgstr ""
+
+#: includes/class-rotapress-calendar.php:531
+msgid "Jane Doe"
+msgstr ""
+
+#: includes/class-rotapress-calendar.php:533
+msgid "Remember to prepare the images."
+msgstr ""
+
+#: includes/class-rotapress-calendar.php:552
+msgid "Failed to send email. Check your SMTP configuration."
+msgstr ""
+
+#: includes/class-rotapress-cpt.php:20
+msgid "Rota Events"
+msgstr ""
+
+#: includes/class-rotapress-cpt.php:21
+msgid "Rota Event"
+msgstr ""
+
+#. translators: Email reminder subject. {site}=site name, {title}=event title, {days}=number of days before the event. Keep placeholders unchanged.
+#: includes/class-rotapress-reminders.php:35
+msgid "[{site}] Reminder: \"{title}\" in {days} day(s)"
+msgstr ""
+
+#. translators: Email reminder body. Placeholders — {assignee}: user display name, {days}: days before the event, {title}: event title, {date}: event date (YYYY-MM-DD), {notes}: event notes, {site}: site name, {calendar_url}: calendar URL, {no_reminder_url}: opt-out URL. Keep all placeholder names unchanged.
+#: includes/class-rotapress-reminders.php:43
+msgid ""
+"Hello {assignee},\n"
+"\n"
+"This is a reminder that you have an event in {days} day(s):\n"
+"\n"
+"Title: {title}\n"
+"Date: {date}\n"
+"Notes: {notes}\n"
+"\n"
+"View the calendar: {calendar_url}\n"
+"\n"
+"To stop reminders for this event: {no_reminder_url}\n"
+"\n"
+"—\n"
+"{site}"
+msgstr ""
+
+#: includes/class-rotapress-reminders.php:196
+#: includes/class-rotapress-reminders.php:235
+msgid "(untitled)"
+msgstr ""
+
+#: includes/class-rotapress-reminders.php:264
+msgid "Invalid link."
+msgstr ""
+
+#: includes/class-rotapress-reminders.php:264
+msgid "Invalid link"
+msgstr ""
+
+#: includes/class-rotapress-reminders.php:269
+msgid "Not found"
+msgstr ""
+
+#: includes/class-rotapress-reminders.php:274
+msgid "This link has already been used or is invalid."
+msgstr ""
+
+#: includes/class-rotapress-reminders.php:274
+msgid "Link expired"
+msgstr ""
+
+#. translators: %1$s: event title, %2$s: event date (YYYY-MM-DD)
+#: includes/class-rotapress-reminders.php:286
+#, php-format
+msgid "Done. You will no longer receive reminders for \"%1$s\" planned on %2$s."
+msgstr ""
+
+#: includes/class-rotapress-reminders.php:290
+msgid "Reminder cancelled"
+msgstr ""
