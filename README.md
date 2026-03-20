@@ -5,6 +5,11 @@ Editorial rota calendar for WordPress — multi-author scheduling with role-base
 **RotaPress** is a WordPress plugin that gives editorial teams a shared calendar to plan and track who publishes what, and when.
 It's not always easy to keep track of publication schedules across multiple authors and it can quickly become chaotic, spreadsheets get outdated, emails get lost, and deadlines slip through the cracks. RotaPress solves this by embedding a simple visual editorial rota directly inside WordPress, where the work actually happens.
 
+<br>
+
+![RotaPress banner](assets/banner-1544x500.jpg)
+
+<br>
 
 With RotaPress, an editor or team lead can:
 
@@ -35,7 +40,13 @@ RotaPress is not a publishing workflow tool like PublishPress for example, it do
 1. Download latest release or clone this repository into `wp-content/plugins/rotapress/`.
 2. Activate **RotaPress** from the WordPress Plugins admin page.
 3. Navigate to **RotaPress → Settings** to configure role mapping and participants.
-<br><br>
+
+<br>
+
+<img src="assets/icon-256x256.png" alt="RotaPress icon" width="128">
+
+<br>
+
 ## Role Mapping
 
 RotaPress defines three permission levels:
@@ -45,7 +56,9 @@ RotaPress defines three permission levels:
 | **Admin** | `rotapress_admin` | Full access including settings |
 | **Edit** | `rotapress_edit` | Create, edit, delete events |
 | **Read** | `rotapress_read` | View the calendar only |
+
 <br>
+
 Capabilities are granted dynamically — no WordPress roles are modified in the database.
 
 By default:
