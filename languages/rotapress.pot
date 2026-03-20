@@ -180,8 +180,16 @@ msgid "Delete recurring event"
 msgstr ""
 
 #: admin/class-rotapress-admin.php:86
-#: admin/class-rotapress-admin.php:185
+#: admin/class-rotapress-admin.php:184
 msgid "My events only"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:183
+msgid "All events"
+msgstr ""
+
+#: admin/class-rotapress-admin.php:186
+msgid "Unassigned events"
 msgstr ""
 
 #: admin/class-rotapress-admin.php:87

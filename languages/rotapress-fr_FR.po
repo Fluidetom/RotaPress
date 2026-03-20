@@ -160,9 +160,17 @@ msgstr "Modifier l'événement récurrent"
 msgid "Delete recurring event"
 msgstr "Supprimer l'événement récurrent"
 
-#: admin/class-rotapress-admin.php:86 admin/class-rotapress-admin.php:185
+#: admin/class-rotapress-admin.php:86 admin/class-rotapress-admin.php:184
 msgid "My events only"
 msgstr "Mes événements uniquement"
+
+#: admin/class-rotapress-admin.php:183
+msgid "All events"
+msgstr "Tous les événements"
+
+#: admin/class-rotapress-admin.php:186
+msgid "Unassigned events"
+msgstr "Événements non assignés"
 
 #: admin/class-rotapress-admin.php:87 admin/class-rotapress-admin.php:187
 #: admin/class-rotapress-admin.php:293

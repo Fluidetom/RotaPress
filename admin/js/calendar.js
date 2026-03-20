@@ -4,7 +4,7 @@
 	var cfg = window.rotapress, i18n = cfg.i18n;
 	var canEdit = parseInt(cfg.can_edit, 10) === 1;
 	var myId = parseInt(cfg.current_user_id, 10);
-	var calendar, users = [], userMap = {}, filterMine = false;
+	var calendar, users = [], userMap = {}, filterValue = 'all';
 	var pendingScope = null, bulkSelected = {}, activeScopeId = null;
 	var hasIcalToken = parseInt(cfg.has_ical_token, 10) === 1;
 	var currentIcalUrl = cfg.ical_url || '';
@@ -43,7 +43,15 @@
 	function fetchEvents(info, ok, fail) {
 		var s = info.startStr.substring(0, 10), e = info.endStr.substring(0, 10);
 		fetch(cfg.api_base + '/events?start=' + s + '&end=' + e, { headers: hdrs() }).then(chk).then(function (data) {
-			var filtered = filterMine ? data.filter(function (ev) { return parseInt(ev.assigned_user, 10) === myId; }) : data;
+			var filtered = data;
+			if (filterValue === 'mine') {
+				filtered = data.filter(function (ev) { return parseInt(ev.assigned_user, 10) === myId; });
+			} else if (filterValue === 'unassigned') {
+				filtered = data.filter(function (ev) { return !ev.assigned_user || parseInt(ev.assigned_user, 10) === 0; });
+			} else if (filterValue !== 'all') {
+				var fid = parseInt(filterValue, 10);
+				filtered = data.filter(function (ev) { return parseInt(ev.assigned_user, 10) === fid; });
+			}
 			ok(filtered.map(function (ev) {
 				var u = userMap[ev.assigned_user] || {}, color = u.color || ev.color || '#2271b1';
 				var label = ev.title;
@@ -409,10 +417,8 @@
 		if (addBtn) addBtn.addEventListener('click', function () { if (canEdit) openModal(null, ''); });
 
 		/* Filter. */
-		document.getElementById('rp-filter-mine').addEventListener('click', function () {
-			filterMine = !filterMine;
-			this.classList.toggle('rp-filter-active', filterMine);
-			this.setAttribute('aria-pressed', filterMine ? 'true' : 'false');
+		document.getElementById('rp-filter-participant').addEventListener('change', function () {
+			filterValue = this.value;
 			calendar.refetchEvents();
 		});
 
@@ -470,6 +476,15 @@
 	document.addEventListener('DOMContentLoaded', function () {
 		loadUsers().then(function () {
 			populateSelect(document.getElementById('rp-user'));
+			var sel = document.getElementById('rp-filter-participant');
+			var unassignedOpt = sel.querySelector('option[value="unassigned"]');
+			users.forEach(function (u) {
+				if (parseInt(u.ID, 10) === myId) return;
+				var opt = document.createElement('option');
+				opt.value = u.ID;
+				opt.textContent = u.display_name;
+				sel.insertBefore(opt, unassignedOpt);
+			});
 			initCalendar(); bindAll();
 		}).catch(function (e) { console.error('RotaPress init:', e); });
 	});

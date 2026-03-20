@@ -180,9 +180,12 @@ class RotaPress_Admin {
 							<?php esc_html_e( 'New Event', 'rotapress' ); ?>
 						</button>
 					<?php endif; ?>
-					<button type="button" class="button rp-filter-btn" id="rp-filter-mine" aria-pressed="false">
-						<?php esc_html_e( 'My events only', 'rotapress' ); ?>
-					</button>
+					<select id="rp-filter-participant" class="rp-filter-select">
+						<option value="all"><?php esc_html_e( 'All events', 'rotapress' ); ?></option>
+						<option value="mine"><?php esc_html_e( 'My events only', 'rotapress' ); ?></option>
+						<!-- participant options injected by JS after loadUsers() -->
+						<option value="unassigned"><?php esc_html_e( 'Unassigned events', 'rotapress' ); ?></option>
+					</select>
 					<button type="button" class="button rp-ical-toggle" id="rp-ical-toggle" aria-label="<?php esc_attr_e( 'iCal Feed', 'rotapress' ); ?>">
 						<span class="dashicons dashicons-rss"></span>
 					</button>
