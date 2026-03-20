@@ -38,12 +38,6 @@ register_deactivation_hook( __FILE__, array( 'RotaPress_Roles', 'deactivate' ) )
  * Initialise all plugin components on plugins_loaded.
  */
 function rotapress_init(): void {
-	load_plugin_textdomain(
-		'rotapress',
-		false,
-		dirname( plugin_basename( __FILE__ ) ) . '/languages/'
-	);
-
 	new RotaPress_Roles();
 	new RotaPress_CPT();
 	new RotaPress_Calendar();

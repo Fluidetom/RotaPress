@@ -39,9 +39,8 @@ class RotaPress_Admin {
 	}
 
 	private function enqueue_calendar_assets(): void {
-		wp_enqueue_style( 'fullcalendar', 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css', array(), '6.1.15' );
-		wp_enqueue_script( 'fullcalendar', 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js', array(), '6.1.15', true );
-		wp_enqueue_style( 'rotapress-calendar', ROTAPRESS_URL . 'admin/css/calendar.css', array( 'fullcalendar' ), ROTAPRESS_VERSION );
+		wp_enqueue_script( 'fullcalendar', ROTAPRESS_URL . 'admin/js/fullcalendar-6.1.15.min.js', array(), '6.1.15', true );
+		wp_enqueue_style( 'rotapress-calendar', ROTAPRESS_URL . 'admin/css/calendar.css', array(), ROTAPRESS_VERSION );
 		wp_enqueue_script( 'rotapress-calendar', ROTAPRESS_URL . 'admin/js/calendar.js', array( 'fullcalendar' ), ROTAPRESS_VERSION, true );
 
 		$can_edit = current_user_can( 'rotapress_edit' ) ? 1 : 0;
@@ -342,10 +341,10 @@ class RotaPress_Admin {
 
 		$palette = array( '#2271b1', '#d63638', '#00a32a', '#dba617', '#3858e9', '#b32d2e', '#007017', '#996800', '#9b59b6', '#1abc9c', '#e67e22', '#34495e' );
 
-		$saved = isset( $_GET['saved'] ) && '1' === $_GET['saved'];
-		$revoked = isset( $_GET['token_revoked'] ) && '1' === $_GET['token_revoked'];
-		$restored = isset( $_GET['restored'] ) && '1' === $_GET['restored'];
-		$purged = isset( $_GET['purged'] ) && '1' === $_GET['purged'];
+		$saved = isset( $_GET['saved'] ) && '1' === $_GET['saved']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- redirect status flag, not form data
+		$revoked = isset( $_GET['token_revoked'] ) && '1' === $_GET['token_revoked']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- redirect status flag, not form data
+		$restored = isset( $_GET['restored'] ) && '1' === $_GET['restored']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- redirect status flag, not form data
+		$purged = isset( $_GET['purged'] ) && '1' === $_GET['purged']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- redirect status flag, not form data
 		?>
 		<div class="wrap rotapress-wrap">
 			<h1><?php esc_html_e( 'RotaPress Settings', 'rotapress' ); ?></h1>
@@ -513,7 +512,7 @@ class RotaPress_Admin {
 			<h2><?php esc_html_e( 'Trash', 'rotapress' ); ?></h2>
 			<p class="description"><?php esc_html_e( 'Deleted events are kept in the trash for 30 days. You can restore them here.', 'rotapress' ); ?></p>
 			<?php
-			$trash_page  = max( 1, (int) ( $_GET['trash_page'] ?? 1 ) ); // phpcs:ignore WordPress.Security.NonceVerification
+			$trash_page  = max( 1, absint( wp_unslash( $_GET['trash_page'] ?? 1 ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
 			$per_page    = 20;
 			$trash_query = new \WP_Query( array(
 				'post_type'      => 'rp_event',
@@ -534,7 +533,7 @@ class RotaPress_Admin {
 					printf(
 						/* translators: %d: number of events in trash */
 						esc_html__( '%d event(s) in trash.', 'rotapress' ),
-						$total_trash
+						absint( $total_trash )
 					);
 					?>
 				</p>
@@ -602,7 +601,7 @@ class RotaPress_Admin {
 		}
 
 		/* Role mapping (radio per WP role). */
-		$raw_roles = isset( $_POST['rotapress_role_for'] ) && is_array( $_POST['rotapress_role_for'] ) ? $_POST['rotapress_role_for'] : array();
+		$raw_roles = isset( $_POST['rotapress_role_for'] ) && is_array( $_POST['rotapress_role_for'] ) ? wp_unslash( $_POST['rotapress_role_for'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- each value sanitized via sanitize_text_field() in the loop below
 		$mapping   = array( 'admin' => array(), 'edit' => array(), 'read' => array() );
 		foreach ( $raw_roles as $wp_role => $rp_level ) {
 			$rp_level = sanitize_text_field( $rp_level );
@@ -614,13 +613,13 @@ class RotaPress_Admin {
 		update_option( 'rotapress_role_mapping', $mapping );
 
 		/* Participants. */
-		$raw_p = isset( $_POST['rotapress_participants'] ) && is_array( $_POST['rotapress_participants'] ) ? $_POST['rotapress_participants'] : array();
+		$raw_p = isset( $_POST['rotapress_participants'] ) && is_array( $_POST['rotapress_participants'] ) ? wp_unslash( $_POST['rotapress_participants'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- keys cast to int in the loop below
 		$participants = array();
 		foreach ( $raw_p as $uid => $val ) { $participants[ (int) $uid ] = 1; }
 		update_option( 'rotapress_participants', $participants );
 
 		/* Colors. */
-		$raw_c = isset( $_POST['rotapress_colors'] ) && is_array( $_POST['rotapress_colors'] ) ? $_POST['rotapress_colors'] : array();
+		$raw_c = isset( $_POST['rotapress_colors'] ) && is_array( $_POST['rotapress_colors'] ) ? wp_unslash( $_POST['rotapress_colors'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- each value sanitized via sanitize_hex_color() in the loop below
 		$colors = array();
 		foreach ( $raw_c as $uid => $hex ) {
 			$s = sanitize_hex_color( $hex );
@@ -629,7 +628,7 @@ class RotaPress_Admin {
 		update_option( 'rotapress_user_colors', $colors );
 
 		/* Reminder days. */
-		update_option( 'rotapress_reminder_days', sanitize_text_field( $_POST['rotapress_reminder_days'] ?? '7,3,1' ) );
+		update_option( 'rotapress_reminder_days', sanitize_text_field( wp_unslash( $_POST['rotapress_reminder_days'] ?? '7,3,1' ) ) );
 
 		/* Email template — wp_unslash() before sanitizing because WordPress
 		 * applies addslashes() to all $_POST data (wp_magic_quotes), which
@@ -652,7 +651,7 @@ class RotaPress_Admin {
 		if ( ! current_user_can( 'rotapress_admin' ) ) {
 			wp_die( esc_html__( 'Unauthorized.', 'rotapress' ) );
 		}
-		$event_id = (int) ( $_GET['event_id'] ?? 0 );
+		$event_id = absint( wp_unslash( $_GET['event_id'] ?? 0 ) );
 		if ( $event_id > 0 ) {
 			wp_untrash_post( $event_id );
 			/* wp_untrash_post restores to the pre-trash status which may be
@@ -671,7 +670,7 @@ class RotaPress_Admin {
 		if ( ! current_user_can( 'rotapress_admin' ) ) {
 			wp_die( esc_html__( 'Unauthorized.', 'rotapress' ) );
 		}
-		$event_id = (int) ( $_GET['event_id'] ?? 0 );
+		$event_id = absint( wp_unslash( $_GET['event_id'] ?? 0 ) );
 		if ( $event_id > 0 ) {
 			wp_delete_post( $event_id, true );
 		}

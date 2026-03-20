@@ -151,7 +151,7 @@ class RotaPress_Calendar {
 			'post_type'      => 'rp_event',
 			'posts_per_page' => 1000,
 			'post_status'    => 'publish',
-			'meta_query'     => array(
+			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 				array(
 					'key'     => '_rp_event_date',
 					'value'   => array( $start, $end ),
@@ -175,7 +175,7 @@ class RotaPress_Calendar {
 			'post_type'      => 'rp_event',
 			'posts_per_page' => -1,
 			'post_status'    => 'publish',
-			'meta_query'     => array(
+			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 				array(
 					'key'     => '_rp_rrule',
 					'compare' => 'EXISTS',
@@ -574,10 +574,10 @@ class RotaPress_Calendar {
 			'post_type'      => 'rp_event',
 			'posts_per_page' => 50,
 			'post_status'    => 'publish',
-			'meta_key'       => '_rp_event_date',
-			'orderby'        => 'meta_value',
+			'meta_key'       => '_rp_event_date', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			'orderby'        => 'meta_value', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 			'order'          => 'ASC',
-			'meta_query'     => array(
+			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 				array(
 					'key'     => '_rp_event_date',
 					'value'   => gmdate( 'Y-m-d' ),
@@ -638,7 +638,7 @@ class RotaPress_Calendar {
 			'post_type'      => 'rp_event',
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
-			'meta_query'     => array(
+			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 				array( 'key' => '_rp_assigned_user', 'value' => $user_id, 'compare' => '=', 'type' => 'NUMERIC' ),
 				array( 'key' => '_rp_event_date', 'value' => $today, 'compare' => '>=', 'type' => 'DATE' ),
 				array( 'key' => '_rp_rrule', 'compare' => 'NOT EXISTS' ),
@@ -658,7 +658,7 @@ class RotaPress_Calendar {
 			'post_type'      => 'rp_event',
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
-			'meta_query'     => array(
+			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 				array( 'key' => '_rp_assigned_user', 'value' => $user_id, 'compare' => '=', 'type' => 'NUMERIC' ),
 				array( 'key' => '_rp_rrule', 'compare' => 'EXISTS' ),
 				array( 'key' => '_rp_rrule', 'value' => '', 'compare' => '!=' ),

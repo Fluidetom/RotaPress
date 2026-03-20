@@ -55,8 +55,8 @@ class RotaPress_iCal {
 		}
 
 		$users = get_users( array(
-			'meta_key'   => '_rp_ical_token',
-			'meta_value' => $token,
+			'meta_key'   => '_rp_ical_token', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			'meta_value' => $token, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 			'number'     => 1,
 		) );
 
@@ -74,7 +74,7 @@ class RotaPress_iCal {
 			'post_type'      => 'rp_event',
 			'posts_per_page' => -1,
 			'post_status'    => 'publish',
-			'meta_query'     => array( array(
+			'meta_query'     => array( array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 				'key'     => '_rp_assigned_user',
 				'value'   => $user->ID,
 				'compare' => '=',
@@ -127,7 +127,7 @@ class RotaPress_iCal {
 		header( 'Content-Type: text/calendar; charset=UTF-8' );
 		header( 'Content-Disposition: inline; filename="rotapress.ics"' );
 		header( 'Cache-Control: no-store, no-cache, must-revalidate' );
-		echo $output;
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- iCal output is not HTML
 		exit;
 	}
 
@@ -194,7 +194,7 @@ class RotaPress_iCal {
 	 */
 	public static function get_all_active_tokens(): array {
 		$users = get_users( array(
-			'meta_key'     => '_rp_ical_token',
+			'meta_key'     => '_rp_ical_token', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 			'meta_compare' => 'EXISTS',
 		) );
 
@@ -254,7 +254,7 @@ class RotaPress_iCal {
 		if ( ! current_user_can( 'rotapress_admin' ) ) {
 			wp_die( esc_html__( 'Unauthorized.', 'rotapress' ) );
 		}
-		$uid = (int) ( $_GET['user_id'] ?? 0 );
+		$uid = absint( wp_unslash( $_GET['user_id'] ?? 0 ) );
 		if ( $uid > 0 ) {
 			delete_user_meta( $uid, '_rp_ical_token' );
 			delete_user_meta( $uid, '_rp_ical_token_created' );

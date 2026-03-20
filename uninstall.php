@@ -11,8 +11,8 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 global $wpdb;
 
-$keep = get_option( 'rotapress_keep_data', '0' );
-if ( '1' === $keep ) {
+$rotapress_keep = get_option( 'rotapress_keep_data', '0' );
+if ( '1' === $rotapress_keep ) {
 	return;
 }
 
@@ -20,9 +20,9 @@ if ( '1' === $keep ) {
 $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'rotapress\_%'" );
 
 // phpcs:ignore WordPress.DB.DirectDatabaseQuery
-$post_ids = $wpdb->get_col( "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'rp_event'" );
-if ( $post_ids ) {
-	foreach ( $post_ids as $id ) {
+$rotapress_post_ids = $wpdb->get_col( "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'rp_event'" );
+if ( $rotapress_post_ids ) {
+	foreach ( $rotapress_post_ids as $id ) {
 		wp_delete_post( (int) $id, true );
 	}
 }

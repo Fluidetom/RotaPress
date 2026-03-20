@@ -68,7 +68,7 @@ class RotaPress_Reminders {
 				'post_type'      => 'rp_event',
 				'posts_per_page' => -1,
 				'post_status'    => 'publish',
-				'meta_query'     => array(
+				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 					array(
 						'key'     => '_rp_event_date',
 						'value'   => $target_date,
@@ -111,7 +111,7 @@ class RotaPress_Reminders {
 				'post_type'      => 'rp_event',
 				'posts_per_page' => -1,
 				'post_status'    => 'publish',
-				'meta_query'     => array(
+				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 					array( 'key' => '_rp_rrule', 'compare' => 'EXISTS' ),
 					array( 'key' => '_rp_rrule', 'value' => '', 'compare' => '!=' ),
 				),
@@ -242,12 +242,12 @@ class RotaPress_Reminders {
 	 * URL: ?rp_no_reminder=1&rp_event=ID&rp_token=TOKEN
 	 */
 	public function handle_no_reminder_token(): void {
-		if ( empty( $_GET['rp_no_reminder'] ) ) {
+		if ( empty( $_GET['rp_no_reminder'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- public email link, token is the auth mechanism
 			return;
 		}
 
-		$event_id = (int) ( $_GET['rp_event'] ?? 0 );
-		$token    = sanitize_text_field( (string) ( $_GET['rp_token'] ?? '' ) );
+		$event_id = absint( wp_unslash( $_GET['rp_event'] ?? 0 ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- public email link, token is the auth mechanism
+		$token    = sanitize_text_field( wp_unslash( (string) ( $_GET['rp_token'] ?? '' ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- public email link, token is the auth mechanism
 
 		if ( ! $event_id || ! $token ) {
 			wp_die( esc_html__( 'Invalid link.', 'rotapress' ), esc_html__( 'Invalid link', 'rotapress' ), array( 'response' => 400 ) );
