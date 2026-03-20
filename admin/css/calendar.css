@@ -222,6 +222,15 @@
 	vertical-align: middle;
 }
 
+/* ── View-only modal (disabled inputs) ────────────────────────────── */
+
+#rp-modal input:disabled,
+#rp-modal select:disabled,
+#rp-modal textarea:disabled {
+	color: #1d2327;
+	opacity: 1;
+}
+
 /* ── Misc ──────────────────────────────────────────────────────────── */
 
 #rp-recurrence-section hr {
@@ -234,9 +243,18 @@
 	margin-bottom: 12px;
 }
 
-.rp-ical-toggle .dashicons {
-	font-size: 18px;
-	width: 18px;
-	height: 18px;
-	line-height: 1;
+button.rp-ical-toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 8px;
+}
+
+button.rp-ical-toggle .dashicons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
 }

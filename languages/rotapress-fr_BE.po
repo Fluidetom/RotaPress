@@ -2,7 +2,7 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: RotaPress 1.2.0\n"
+"Project-Id-Version: RotaPress 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/RotaPress\n"
 "POT-Creation-Date: 2026-03-19T20:41:43+00:00\n"
 "PO-Revision-Date: 2026-03-19 21:48+0100\n"
@@ -845,6 +845,14 @@ msgstr ""
 #: includes/class-rotapress-reminders.php:279
 msgid "Reminder cancelled"
 msgstr "Notifications de rappel annulée"
+
+#: admin/class-rotapress-admin.php:262
+msgid "Edit event"
+msgstr "Modifier l'événement"
+
+#: admin/class-rotapress-admin.php:263
+msgid "Event is part of a series"
+msgstr "Cet événement fait partie d'une série"
 
 #~ msgid "Send a test email using the template above with sample data."
 #~ msgstr ""

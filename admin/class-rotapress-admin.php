@@ -261,6 +261,8 @@ class RotaPress_Admin {
 						<button type="button" class="button button-primary" id="rp-save"><?php esc_html_e( 'Save', 'rotapress' ); ?></button>
 						<button type="button" class="button rp-btn-delete" id="rp-delete" style="display:none"><?php esc_html_e( 'Delete', 'rotapress' ); ?></button>
 						<button type="button" class="button" id="rp-close"><?php esc_html_e( 'Close', 'rotapress' ); ?></button>
+						<button type="button" class="button" id="rp-edit-event" style="display:none"><?php esc_html_e( 'Edit event', 'rotapress' ); ?></button>
+						<span id="rp-edit-series-hint" style="display:none; font-size:0.85em; color:#666; margin-left:8px;"><?php esc_html_e( 'Event is part of a series', 'rotapress' ); ?></span>
 					</div>
 				</div>
 			</div>

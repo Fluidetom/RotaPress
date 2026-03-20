@@ -5,7 +5,7 @@
 	var canEdit = parseInt(cfg.can_edit, 10) === 1;
 	var myId = parseInt(cfg.current_user_id, 10);
 	var calendar, users = [], userMap = {}, filterValue = 'all';
-	var pendingScope = null, bulkSelected = {}, activeScopeId = null;
+	var pendingScope = null, pendingViewEvent = null, bulkSelected = {}, activeScopeId = null;
 	var hasIcalToken = parseInt(cfg.has_ical_token, 10) === 1;
 	var currentIcalUrl = cfg.ical_url || '';
 
@@ -125,12 +125,12 @@
 	/* ── Event click ───────────────────────────────────────────────── */
 	async function handleEventClick(ev) {
 		pendingScope = null;
+		pendingViewEvent = null;
 		if (ev.is_recurring && canEdit) {
-			var scope = await askScope('edit');
-			if (!scope) return;
-			pendingScope = scope;
+			openModal(ev, null, true);
+			return;
 		}
-		openModal(ev, null);
+		openModal(ev, null, false);
 	}
 
 	/* ── Freq UI ───────────────────────────────────────────────────── */
@@ -159,7 +159,8 @@
 	}
 
 	/* ── Modal ──────────────────────────────────────────────────────── */
-	function openModal(ev, dateStr) {
+	function openModal(ev, dateStr, viewOnly) {
+		viewOnly = viewOnly === true;
 		var isEdit = !!ev;
 		document.getElementById('rp-event-id').value = isEdit ? ev.id : '';
 		document.getElementById('rp-is-recurring').value = (isEdit && ev.is_recurring) ? '1' : '0';
@@ -168,32 +169,47 @@
 		document.getElementById('rp-date').value = isEdit ? ev.event_date : (dateStr || '');
 		document.getElementById('rp-user').value = isEdit ? ev.assigned_user : '';
 		document.getElementById('rp-notes').value = isEdit ? ev.notes : '';
-		document.getElementById('rp-delete').style.display = (isEdit && canEdit) ? '' : 'none';
-		document.getElementById('rp-save').style.display = canEdit ? '' : 'none';
 
 		var noReminderRow = document.getElementById('rp-no-reminder-row');
 		var noReminderChk = document.getElementById('rp-no-reminder');
-		noReminderRow.style.display = canEdit ? '' : 'none';
 		noReminderChk.checked = isEdit ? !!ev.no_reminder : false;
 
 		var recSec = document.getElementById('rp-recurrence-section');
 		var recChk = document.getElementById('rp-recurring-check');
 		var recFld = document.getElementById('rp-recurrence-fields');
-		var show = false;
 
-		if (!isEdit && canEdit) {
-			show = true; recChk.checked = false; recFld.style.display = 'none'; resetRecFields();
-		} else if (isEdit && canEdit && ev.is_recurring && pendingScope === 'all') {
-			show = true; recChk.checked = true; recFld.style.display = '';
-			if (ev.rrule) applyRrule(ev.rrule); else resetRecFields();
+		if (viewOnly) {
+			document.querySelectorAll('#rp-modal input:not([type="hidden"]), #rp-modal select, #rp-modal textarea').forEach(function (el) { el.disabled = true; });
+			document.getElementById('rp-save').style.display = 'none';
+			document.getElementById('rp-delete').style.display = 'none';
+			noReminderRow.style.display = 'none';
+			recSec.style.display = 'none';
+			document.getElementById('rp-edit-event').style.display = '';
+			document.getElementById('rp-edit-series-hint').style.display = '';
+			pendingViewEvent = ev;
 		} else {
-			recChk.checked = false; recFld.style.display = 'none';
+			document.querySelectorAll('#rp-modal input:not([type="hidden"]), #rp-modal select, #rp-modal textarea').forEach(function (el) { el.disabled = false; });
+			document.getElementById('rp-edit-event').style.display = 'none';
+			document.getElementById('rp-edit-series-hint').style.display = 'none';
+			document.getElementById('rp-delete').style.display = (isEdit && canEdit) ? '' : 'none';
+			document.getElementById('rp-save').style.display = canEdit ? '' : 'none';
+			noReminderRow.style.display = canEdit ? '' : 'none';
+
+			var show = false;
+			if (!isEdit && canEdit) {
+				show = true; recChk.checked = false; recFld.style.display = 'none'; resetRecFields();
+			} else if (isEdit && canEdit && ev.is_recurring && pendingScope === 'all') {
+				show = true; recChk.checked = true; recFld.style.display = '';
+				if (ev.rrule) applyRrule(ev.rrule); else resetRecFields();
+			} else {
+				recChk.checked = false; recFld.style.display = 'none';
+			}
+			recSec.style.display = show ? '' : 'none';
 		}
-		recSec.style.display = show ? '' : 'none';
 		document.getElementById('rp-modal').style.display = 'flex';
 		document.getElementById('rp-title').focus();
 	}
-	function closeModal() { document.getElementById('rp-modal').style.display = 'none'; pendingScope = null; }
+	function closeModal() { document.getElementById('rp-modal').style.display = 'none'; pendingScope = null; pendingViewEvent = null; }
 
 	/* ── Scope dialog ──────────────────────────────────────────────── */
 	function askScope(type) {
@@ -412,6 +428,14 @@
 		document.getElementById('rp-save').addEventListener('click', saveEvent);
 		document.getElementById('rp-delete').addEventListener('click', deleteEvent);
 		document.getElementById('rp-close').addEventListener('click', closeModal);
+		document.getElementById('rp-edit-event').addEventListener('click', async function () {
+			var ev = pendingViewEvent;
+			closeModal();
+			var scope = await askScope('edit');
+			if (!scope) return;
+			pendingScope = scope;
+			openModal(ev, null, false);
+		});
 
 		var addBtn = document.getElementById('rp-add-event');
 		if (addBtn) addBtn.addEventListener('click', function () { if (canEdit) openModal(null, ''); });
@@ -465,10 +489,10 @@
 
 		/* Close overlays. */
 		document.querySelectorAll('.rp-modal-overlay').forEach(function (o) {
-			o.addEventListener('click', function (e) { if (e.target === o) { o.style.display = 'none'; pendingScope = null; } });
+			o.addEventListener('click', function (e) { if (e.target === o) { o.style.display = 'none'; pendingScope = null; pendingViewEvent = null; } });
 		});
 		document.addEventListener('keydown', function (e) {
-			if (e.key === 'Escape') { document.querySelectorAll('.rp-modal-overlay').forEach(function (o) { o.style.display = 'none'; }); pendingScope = null; }
+			if (e.key === 'Escape') { document.querySelectorAll('.rp-modal-overlay').forEach(function (o) { o.style.display = 'none'; }); pendingScope = null; pendingViewEvent = null; }
 		});
 	}
 

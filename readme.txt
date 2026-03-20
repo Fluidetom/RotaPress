@@ -4,7 +4,7 @@ Tags: calendar, schedule, editorial, rota, recurring-events
 Requires at least: 6.3
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,6 +68,9 @@ No. Only the parent event is stored. Instances are expanded on the fly from the 
 
 == Changelog ==
 
+= 1.2.1 =
+* Fixed iCal feed button icon vertical alignment in the toolbar.
+
 = 1.2.0 =
 * Added participant removal guard: when unchecking a participant in Settings who has upcoming events, a modal prompts to reassign, delete, or clear those events before saving.
 * Added French (Belgium) translation (fr_BE), identical to fr_FR.
@@ -85,6 +88,9 @@ No. Only the parent event is stored. Instances are expanded on the fly from the 
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.2.1 =
+Minor visual fix — safe to upgrade directly.
 
 = 1.2.0 =
 New feature: participant removal guard in Settings. No database changes — safe to upgrade directly.
